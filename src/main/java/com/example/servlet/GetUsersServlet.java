@@ -12,8 +12,12 @@ import java.io.IOException;
 @WebServlet("/users")
 public class GetUsersServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", Warehouse.getInstance().getUsers());
-        req.getRequestDispatcher("/jsp/users.jsp").forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            req.setAttribute("users", Warehouse.getInstance().getUsers());
+        } catch (Exception ignored) {}
+        finally {
+            req.getRequestDispatcher("/jsp/users.jsp").forward(req, resp);
+        }
     }
 }
