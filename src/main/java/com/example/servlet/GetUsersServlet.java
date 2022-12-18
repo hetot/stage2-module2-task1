@@ -2,7 +2,6 @@ package com.example.servlet;
 
 import com.example.Warehouse;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +12,8 @@ import java.io.IOException;
 @WebServlet("/users")
 public class GetUsersServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("users", Warehouse.getInstance().getUsers());
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/users.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher("/jsp/users.jsp").forward(req, resp);
     }
 }

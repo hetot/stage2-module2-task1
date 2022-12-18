@@ -3,7 +3,6 @@ package com.example.servlet;
 import com.example.User;
 import com.example.Warehouse;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ public class AddUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/add.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher("/jsp/add.jsp").forward(req, resp);
     }
 }
