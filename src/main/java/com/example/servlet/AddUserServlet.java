@@ -15,18 +15,14 @@ public class AddUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String firstName = req.getParameter("firstName");
-            String lastName = req.getParameter("lastName");
-            if (firstName != null && lastName != null) {
-                User user = new User(firstName, lastName);
-                Warehouse.getInstance().addUser(user);
-                req.setAttribute("user", user);
-            }
-        } catch (Exception ignored) {}
-        finally {
-            doGet(req, resp);
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        if (firstName != null && lastName != null) {
+            User user = new User(firstName, lastName);
+            Warehouse.getInstance().addUser(user);
+            req.setAttribute("user", user);
         }
+        doGet(req, resp);
     }
 
     @Override
